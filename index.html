@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="main-html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FEKRA // STUDIO PREMIUM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Cairo:wght@900&display=swap" rel="stylesheet">
+    <style>
+        :root { --gold: #d4af37; --gold-glow: #ffcc00; --bg: #050505; --promo: #ff3e3e; }
+        body, html { margin: 0; padding: 0; min-height: 100vh; background-color: var(--bg); color: white; font-family: 'Cairo', sans-serif; overflow-x: hidden; }
+        .marble-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.95)), url('https://img.freepik.com/free-vector/black-gold-marble-texture-background_1048-12499.jpg'); background-size: cover; z-index: -1; opacity: 0.4; }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; border-bottom: 2px solid var(--gold); background: rgba(0,0,0,0.8); position: sticky; top: 0; z-index: 1000; }
+        .brand { display: flex; align-items: center; gap: 10px; }
+        .bulb-icon { width: 30px; height: 30px; fill: var(--gold); filter: drop-shadow(0 0 5px var(--gold-glow)); }
+        .logo { font-family: 'Montserrat'; font-weight: 900; font-size: 1.1rem; }
+        .logo span { color: var(--gold); }
+        .lang-switch { display: flex; gap: 5px; }
+        .lang-btn { border: 1px solid #333; color: #fff; padding: 5px 10px; font-size: 10px; cursor: pointer; border-radius: 4px; font-weight: 900; }
+        .lang-btn.active { background: var(--gold); color: black; }
+        .section-title { text-align: center; margin-top: 30px; }
+        .section-title h2 { font-size: 1.5rem; color: var(--gold); font-weight: 900; }
+        .services-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px 5%; }
+        .card { width: 280px; background: rgba(15, 15, 15, 0.9); border: 1px solid #222; padding: 25px; border-radius: 15px; text-align: center; transition: 0.3s; }
+        .card:hover { border-color: var(--gold); transform: translateY(-5px); }
+        .card h3 { font-size: 1.1rem; margin-bottom: 15px; font-weight: 900; }
+        .btn-main { background: var(--gold); color: black; border: none; padding: 10px; width: 100%; font-weight: 900; border-radius: 5px; cursor: pointer; }
+        .promo-card { border: 2px dashed var(--promo); }
+        .promo-btn { background: var(--promo); color: white; }
+        .config-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); display: none; justify-content: center; align-items: center; z-index: 5000; overflow-y: auto; padding: 20px 0; }
+        .config-window { width: 90%; max-width: 450px; background: #0a0a0a; border: 1px solid var(--gold); border-radius: 20px; padding: 25px; position: relative; }
+        .order-block { background: #111; padding: 15px; border-radius: 12px; margin-bottom: 15px; border: 1px solid #222; }
+        .sel-flex { display: flex; gap: 5px; margin: 10px 0; }
+        .sel-item { flex: 1; padding: 8px; border: 1px solid #333; text-align: center; font-size: 0.7rem; border-radius: 5px; cursor: pointer; font-weight: 900; }
+        .sel-item.active { border-color: var(--gold); color: var(--gold); background: rgba(212, 175, 55, 0.1); }
+        .extra-box { display: flex; justify-content: space-between; align-items: center; padding: 8px; background: #000; border-radius: 5px; margin-top: 5px; font-size: 0.7rem; }
+        .input-glow { width: 100%; background: #111; border: 1px solid #333; padding: 12px; border-radius: 8px; color: white; margin-bottom: 10px; font-family: 'Cairo'; outline: none; box-sizing: border-box;}
+        .price-tag { text-align: center; font-size: 1.5rem; color: var(--gold); font-weight: 900; margin: 5px 0; }
+        .payment-note { font-size: 0.7rem; color: #ffcc00; text-align: center; margin-bottom: 15px; background: rgba(255,204,0,0.1); padding: 5px; border-radius: 5px; }
+        .confirm-btn { background: linear-gradient(45deg, #f09433, #dc2743, #bc1888); color: white; border: none; padding: 15px; font-weight: 900; border-radius: 8px; width: 100%; cursor: pointer; }
+    </style>
+</head>
+<body>
+<div class="marble-overlay"></div>
+<header>
+    <div class="brand">
+        <svg class="bulb-icon" viewBox="0 0 64 64"><path d="M32,8A18,18,0,0,0,14,26c0,10,7,14,7,22h22c0-8,7-12,7-22A18,18,0,0,0,32,8Zm-4,50h8v2H28Zm-4-6h16v4H24Z"/></svg>
+        <div class="logo">FEKRA // <span>STUDIO</span></div>
+    </div>
+    <div class="lang-switch">
+        <div class="lang-btn active" onclick="setLang('ar', this)">AR</div>
+        <div class="lang-btn" onclick="setLang('en', this)">EN</div>
+        <div class="lang-btn" onclick="setLang('fr', this)">FR</div>
+    </div>
+</header>
+
+<div class="section-title"><h2 id="t-services">خدماتنا الاحترافية</h2></div>
+<div class="services-grid">
+    <div class="card"><h3 id="card-web">برمجة المواقع</h3><button class="btn-main" onclick="openConfig('WEBSITE')" id="btn-web">تخصيص وطلب</button></div>
+    <div class="card"><h3 id="card-logo">تصميم الشعارات</h3><button class="btn-main" onclick="openConfig('LOGO')" id="btn-logo">تخصيص وطلب</button></div>
+    <div class="card"><h3 id="card-cards">بطاقات العمل</h3><button class="btn-main" onclick="openConfig('CARDS')" id="btn-cards">تخصيص وطلب</button></div>
+</div>
+
+<div class="section-title"><h2 id="t-promo" style="color:var(--promo)">نت وزهرك 🔥</h2></div>
+<div class="services-grid">
+    <div class="card promo-card"><h3 id="card-lucky">خير زوج وادي وحدة باطل</h3><p style="font-size:0.7rem; color:#888;" id="lucky-desc">اختر 3 خدمات، وزهرك يخلص عليك وحدة مجاناً!</p><button class="btn-main promo-btn" onclick="openConfig('LUCKY')" id="btn-lucky">جرب حظك الآن</button></div>
+</div>
+
+<div id="config-modal" class="config-overlay">
+    <div class="config-window">
+        <button onclick="closeConfig()" style="position:absolute; top:15px; left:15px; background:none; border:none; color:white; font-size:1.2rem; cursor:pointer;">✕</button>
+        <div id="modal-body"></div>
+        <input type="text" id="cust-name" class="input-glow" placeholder="الاسم الكامل">
+        <input type="text" id="cust-phone" class="input-glow" placeholder="رقم الهاتف أو الإيميل">
+        <div class="payment-note" id="pay-text">⚠️ الدفع متاح فليكسي فقط. نبعتولك النيميرو كي تعجبك النتيجة!</div>
+        <div class="price-tag"><span id="total-price">0</span> DA</div>
+        <button class="confirm-btn" onclick="sendOrder()" id="btn-send">إرسال الطلب</button>
+    </div>
+</div>
+
+<script>
+    const translations = {
+        ar: { tS: "خدماتنا الاحترافية", tP: "نت وزهرك 🔥", web: "برمجة المواقع", logo: "تصميم الشعارات", cards: "بطاقات العمل", lucky: "خير زوج وادي وحدة باطل", edit: "تخصيص وطلب", send: "إرسال الطلب", pay: "⚠️ الدفع متاح فليكسي فقط. نبعتولك النيميرو كي تعجبك النتيجة!", nP: "الاسم الكامل", cP: "رقم الهاتف أو الإيميل", subWeb: ["تعريفي (2000)", "متجر (3500)"], subLogo: ["شعار (1500)", "هوية (2500)"], subCard: ["وجه (1000)", "وجهين (1500)"], dir: "rtl" },
+        en: { tS: "Professional Services", tP: "Your Luck 🔥", web: "Web Dev", logo: "Logo Design", cards: "Business Cards", lucky: "Buy 2 Get 1 Free", edit: "Customize", send: "Send Order", pay: "⚠️ Payment via Flexy only. Number sent after result!", nP: "Full Name", cP: "Phone or Email", subWeb: ["Info (2000)", "Store (3500)"], subLogo: ["Logo (1500)", "Branding (2500)"], subCard: ["1 Side (1000)", "2 Sides (1500)"], dir: "ltr" },
+        fr: { tS: "Services Pros", tP: "Ta Chance 🔥", web: "Dév Web", logo: "Design Logo", cards: "Cartes Visite", lucky: "2 Achetés = 1 Gratuit", edit: "Personnaliser", send: "Envoyer", pay: "⚠️ Paiement via Flexy uniquement !", nP: "Nom Complet", cP: "Tel ou Email", subWeb: ["Vitrine (2000)", "Boutique (3500)"], subLogo: ["Logo (1500)", "Identité (2500)"], subCard: ["1 Face (1000)", "2 Faces (1500)"], dir: "ltr" }
+    };
+
+    let activeMode = ''; let orderData = []; let currentLang = 'ar';
+
+    function setLang(lang, btn) {
+        currentLang = lang;
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const t = translations[lang];
+        document.getElementById('main-html').dir = t.dir;
+        document.getElementById('t-services').innerText = t.tS;
+        document.getElementById('t-promo').innerText = t.tP;
+        document.getElementById('card-web').innerText = t.web;
+        document.getElementById('card-logo').innerText = t.logo;
+        document.getElementById('card-cards').innerText = t.cards;
+        document.getElementById('card-lucky').innerText = t.lucky;
+        document.getElementById('pay-text').innerText = t.pay;
+        document.getElementById('btn-send').innerText = t.send;
+        document.getElementById('cust-name').placeholder = t.nP;
+        document.getElementById('cust-phone').placeholder = t.cP;
+        document.querySelectorAll('.btn-main').forEach(el => { if(!el.classList.contains('promo-btn')) el.innerText = t.edit; });
+        if(document.getElementById('config-modal').style.display === 'flex') renderOrders();
+    }
+
+    function openConfig(mode) {
+        activeMode = mode;
+        document.getElementById('config-modal').style.display = 'flex';
+        orderData = (mode === 'LUCKY') ? 
+            [ {type:'WEBSITE', sub:0, extra:false}, {type:'LOGO', sub:0, extra:false}, {type:'CARDS', sub:0, extra:false} ] :
+            [ {type:mode, sub:0, extra:false} ];
+        renderOrders();
+    }
+
+    function renderOrders() {
+        let html = ''; const t = translations[currentLang];
+        orderData.forEach((ord, idx) => {
+            let names = ord.type === 'WEBSITE' ? t.subWeb : ord.type === 'LOGO' ? t.subLogo : t.subCard;
+            let typeLabel = ord.type === 'WEBSITE' ? t.web : ord.type === 'LOGO' ? t.logo : t.cards;
+            html += `<div class="order-block">
+                <span style="font-size:0.8rem; color:var(--gold)">${activeMode==='LUCKY' ? typeLabel : typeLabel}</span>
+                <div class="sel-flex">
+                    <div class="sel-item ${ord.sub===0?'active':''}" onclick="updateOrd(${idx},'sub',0)">${names[0]}</div>
+                    <div class="sel-item ${ord.sub===1?'active':''}" onclick="updateOrd(${idx},'sub',1)">${names[1]}</div>
+                </div>
+                ${ord.type!=='LOGO' ? `<div class="extra-box"><span>${ord.type==='WEBSITE'?'Database':'QR Code'} (+1000)</span><input type="checkbox" ${ord.extra?'checked':''} onchange="updateOrd(${idx},'extra',this.checked)"></div>`:''}
+            </div>`;
+        });
+        document.getElementById('modal-body').innerHTML = html;
+        calculatePrice();
+    }
+
+    function updateOrd(idx, key, val) { orderData[idx][key] = val; renderOrders(); }
+
+    function calculatePrice() {
+        let itemPrices = orderData.map(ord => {
+            let p = 0;
+            if(ord.type==='WEBSITE') p = (ord.sub===0?2000:3500);
+            else if(ord.type==='LOGO') p = (ord.sub===0?1500:2500);
+            else p = (ord.sub===0?1000:1500);
+            if(ord.extra) p += 1000;
+            return p;
+        });
+        let total = itemPrices.reduce((a,b)=>a+b, 0);
+        if(activeMode === 'LUCKY') {
+            const winIdx = Math.floor(Math.random()*3);
+            total -= itemPrices[winIdx];
+        }
+        document.getElementById('total-price').innerText = total;
+    }
+
+    function sendOrder() {
+        const name = document.getElementById('cust-name').value;
+        const contact = document.getElementById('cust-phone').value;
+        if(!name || !contact) return alert(currentLang==='ar'?"عمر معلوماتك خويا":"Fill your info please");
+        const msg = `طلب ${activeMode}: العميل ${name}. هاتف: ${contact}. السعر: ${document.getElementById('total-price').innerText} DA. الدفع فليكسي.`;
+        navigator.clipboard.writeText(msg).then(() => {
+            alert("تم النسخ! ابعت الرسالة في انستغرام");
+            window.location.href = "instagram://user?username=fekra_studio_";
+        });
+    }
+
+    function closeConfig() { document.getElementById('config-modal').style.display = 'none'; }
+</script>
+</body>
+</html>
